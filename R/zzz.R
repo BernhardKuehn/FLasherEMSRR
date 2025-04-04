@@ -23,7 +23,7 @@ jukebox <- function(){
 }
 
 .onAttach <- function(libname, pkgname ) {
-    startup <- paste("FLasher: ", jukebox(), sep="")
+    startup <- paste("FLasherEMSRR: ", jukebox(), sep="")
     packageStartupMessage(startup)
 }
 

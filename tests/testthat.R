@@ -1,5 +1,5 @@
 
 library(testthat)
-library(FLasher)
+library(FLasherEMSRR)
 
-test_check("FLasher")
+test_check("FLasherEMSRR")

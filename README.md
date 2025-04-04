@@ -1,4 +1,7 @@
-# FLasher <img src="man/figures/logo.png" align="right" width="120" />
+# FLasherEMSRR 
+
+## This is a fork of the flr-package 'FLasher'! Currently this 'Readme' copies only what was written there. Will be updated if full functionality of the package is ready!
+
 
 [![R-CMD-check](https://github.com/flr/FLasher/workflows/R-CMD-check/badge.svg)](https://github.com/flr/FLasher/actions)
 [![License](https://flr-project.org/img/eupl_1.1.svg)](https://joinup.ec.europa.eu/licence/european-union-public-licence-version-11-or-later-eupl)

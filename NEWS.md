@@ -1,4 +1,10 @@
-# FLasher 0.6.7
+# FLasherEMSRR 0.1 based on FLasher 0.6.7
+
+## NEW FEATURES in FLasherEMSRR
+
+- added user-defined stock recruitment functions and got rid of the base-definitions defined in C++
+- adds some overhead for the user, but gives more flexibility
+
 
 ## BUG FIXES
 

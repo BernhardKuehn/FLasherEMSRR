@@ -1,17 +1,19 @@
-Package: FLasher
+Package: FLasherEMSRR
 Title: Projection and Forecasting of Fish Populations, Stocks and Fleets
 Description: Projection of future population and fishery dynamics is carried
   out for a given set of management targets. A system of equations is solved,
   using Automatic Differentation (AD), for the levels of effort by fishery
   (fleet) that will result in the required abundances, catches or fishing
-  mortalities.
+  mortalities. Adds compatibility with user-defined stock-recruitment functions!
 X-schema.org-keywords: forecast, fisheries, flr, R
 Version: 0.7.1.9225
 Authors@R: c(
 	person(given = 'Iago', family = 'Mosqueira', role = c('aut', 'cre'),
     email = 'iago.mosqueira@wur.nl'),
   person(given = 'Finlay', family = 'Scott', role = c('aut'),
-    email = 'finlay.scott@ec.europa.eu'))
+    email = 'finlay.scott@ec.europa.eu'),
+  person(given = 'Bernhard',family = 'Kuehn', role = c('aut'),
+    email = 'bernhard.kuehn@thuenen.de'))
 Copyright: European Union
 Depends:
   R(>= 3.5.0),
@@ -57,6 +59,6 @@ VignetteBuilder: knitr
 LazyData: No
 NeedsCompilation: Yes
 Biarch: FALSE  
-BugReports: https://github.com/flr/FLasher/issues
+BugReports: https://github.com/BernhardKuehn/FLasherEMSRR/issues
 RoxygenNote: 7.3.2
 Encoding: UTF-8
