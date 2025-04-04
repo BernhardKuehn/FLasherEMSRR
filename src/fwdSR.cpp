@@ -4,6 +4,8 @@
  */
 
 #include "../inst/include/fwdSR.h"
+#include <Rcpp.h>
+using namespace Rcpp;
 
 /*-------------------------------------------------*/
 // Templated class
@@ -16,33 +18,8 @@
 template <typename T>
 void fwdSR_base<T>::init_model_map(){
     // Fill up the map
-    map_model_name_to_function["ricker"] = &ricker;
-    map_model_name_to_function["Ricker"] = &ricker;
-    map_model_name_to_function["bevholt"] = &bevholt;
-    map_model_name_to_function["Bevholt"] = &bevholt;
-    map_model_name_to_function["bevholtDa"] = &bevholtDa;
-    map_model_name_to_function["bevholtda"] = &bevholtDa;
-    map_model_name_to_function["constant"] = &constant;
-    map_model_name_to_function["Constant"] = &constant;
-    map_model_name_to_function["mean"] = &constant;
-    map_model_name_to_function["Mean"] = &constant;
-    map_model_name_to_function["geomean"] = &constant;
-    map_model_name_to_function["Geomean"] = &constant;
-    map_model_name_to_function["bevholtSS3"] = &bevholtSS3;
-    map_model_name_to_function["bevholtss3"] = &bevholtSS3;
-    map_model_name_to_function["BevholtSS3"] = &bevholtSS3;
-    map_model_name_to_function["cushing"] = &cushing;
-    map_model_name_to_function["Cushing"] = &cushing;
-    map_model_name_to_function["Segreg"] = &segreg;
-    map_model_name_to_function["segregDa"] = &segregDa;
-    map_model_name_to_function["SegregDa"] = &segregDa;
-    map_model_name_to_function["segreg"] = &segreg;
-    map_model_name_to_function["survSRR"] = &survsrr;
-    map_model_name_to_function["survsrr"] = &survsrr;
-    map_model_name_to_function["bevholtsig"] = &bevholtsig;
-    map_model_name_to_function["Bevholtsig"] = &bevholtsig;
-    map_model_name_to_function["mixedsrr"] = &mixedsrr;
-    map_model_name_to_function["mixedSRR"] = &mixedsrr;
+    map_model_name_to_function["customSRR"] = &customSRR;
+    map_model_name_to_function["CustomSRR"] = &customSRR;
     return;
 }
 
@@ -70,7 +47,8 @@ fwdSR_base<T>::fwdSR_base(const std::string model_name_ip, const FLQuant params_
     deviances_mult = deviances_mult_ip;
     init_model_map();
     // Set the model pointer
-    typename model_map_type::const_iterator model_pair_found = map_model_name_to_function.find(model_name_ip);
+    // always map to the customSRR-function as nothing else is defined
+    typename model_map_type::const_iterator model_pair_found = map_model_name_to_function.find("customSRR");
     if (model_pair_found != map_model_name_to_function.end()){
         model = model_pair_found->second; // pulls out value - the address of the SR function
     }
@@ -179,7 +157,7 @@ std::vector<double> fwdSR_base<T>::get_params(unsigned int year, unsigned int un
  * \param iter The iter of the SR parameters to use.
  */
 template <typename T>
-T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int area, int iter) const{
+T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int area, int iter, const std::string model_name) const{
     // Get the parameters
     std::vector<double> model_params = get_params(year, unit, season, area, iter);
     // Check if any params are NA - if so, don't evaluate model, set rec to 0.0 for clean exit
@@ -193,7 +171,8 @@ T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int are
         }
     }
     if (paramNA == false){
-        rec = model(srp, model_params);
+      // evaluate with the model name passed as function argument
+        rec = model(srp, model_params,model_name);
     }
     else {
         Rcpp::warning("An SR model param is NA. Setting rec to 0 else something bad will happen.\n");
@@ -206,12 +185,13 @@ T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int are
  * \param params_indices The indices of the SR params (starting at 1).
  */
 template <typename T>
-T fwdSR_base<T>::eval_model(const T srp, const std::vector<unsigned int> params_indices) const{ 
+T fwdSR_base<T>::eval_model(const T srp, const std::vector<unsigned int> params_indices, const std::string model_name) const{ 
     // Check length of params_indices
     if (params_indices.size() != 5){
         Rcpp::stop("In fwdSR::eval_model. params_indices must be of length 5.");
     }
-    T rec = eval_model(srp, params_indices[0], params_indices[1], params_indices[2], params_indices[3], params_indices[4]);
+    T rec = eval_model(srp, params_indices[0], params_indices[1], params_indices[2], params_indices[3], params_indices[4],
+                       model_name);
     return rec;
 }
 //@}
@@ -232,7 +212,8 @@ T fwdSR_base<T>::eval_model(const T srp, const std::vector<unsigned int> params_
  * \param initial_params_indices A vector of length 5 (year, unit, ... iter) to specify the start position of the indices of the SR params and deviances relative to the 'whole' operating model (starting at 1).
  */
 template <typename T>
-FLQuant_base<T> fwdSR_base<T>::predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices){ 
+FLQuant_base<T> fwdSR_base<T>::predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices,
+                                                   const std::string model_name){ 
     if (initial_params_indices.size() != 5){
         Rcpp::stop("In fwdSR::predict_recruitment. initial_params_indices must be of length 5.\n");
     }
@@ -288,7 +269,9 @@ FLQuant_base<T> fwdSR_base<T>::predict_recruitment(const FLQuant_base<T> srp, co
                     for (unsigned int iter_counter = 1; iter_counter <= srp_dim[5]; ++iter_counter){
                         params_indices[4] = initial_params_indices[4] + iter_counter - 1;
                         //deviances_indices[4] = initial_deviances_indices[4] + iter_counter - 1;
-                        T rec_temp = eval_model(srp(1, year_counter, unit_counter, season_counter, area_counter, iter_counter), params_indices);
+                        T rec_temp = eval_model(srp(1, year_counter, unit_counter, season_counter, area_counter, iter_counter),
+                                                params_indices,
+                                                model_name);
                         rec_temp *= sratio;
                         if (deviances_mult == true){
                             rec_temp *= deviances(1, params_indices[0], params_indices[1], params_indices[2], params_indices[3], params_indices[4]);
@@ -398,200 +381,252 @@ bool fwdSR_base<T>::has_recruitment_happened(unsigned int unit, unsigned int yea
 
 // Explicit instantiation of class
 template class fwdSR_base<double>;
-template class fwdSR_base<adouble>;
+//template class fwdSR_base<adouble>;
 
-//--------------------------------------------------------------------
-// SRR functions
-// The params in these functions do not have any disaggregation (e.g. by time or area)
-// They are only the params required to evaluate the SRR function at a specific point
-// The disaggregated parameter values are stored in the fwdSR_base class as an FLQuant_base object
-// The fwdSR.eval_model method sorts out time step of params etc and passes the correct set of params to these functions
-// These functions must have the same argument list so that it matches the typedef for the model pointer
+// //--------------------------------------------------------------------
+// // SRR functions
+// // The params in these functions do not have any disaggregation (e.g. by time or area)
+// // They are only the params required to evaluate the SRR function at a specific point
+// // The disaggregated parameter values are stored in the fwdSR_base class as an FLQuant_base object
+// // The fwdSR.eval_model method sorts out time step of params etc and passes the correct set of params to these functions
+// // These functions must have the same argument list so that it matches the typedef for the model pointer
 template <typename T>
-T ricker(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = a * srp * exp (-b * srp)
-    rec = params[0] * srp * exp(-params[1] * srp);
-    return rec;
-}
-
-template <typename T>
-T bevholt(const T srp, const std::vector<double> params){
-    T rec;
-
-    // rec = a * srp / (b + srp)
-    rec = params[0] * srp / (params[1] + srp);
-
-    if (params.size() > 2) {
-      // rec = a / (1 + (b / srp) ^ d)
-      rec = params[0] / (1 + pow(params[1] / srp, params[2]));
-    }
+T customSRR(const T srp, const std::vector<double> params,const std::string model_name){
+    //T rec;
+    // Use the global environment so that any function (such as predefined_function) is found.
+    Environment env = Environment::global_env();
     
-    return rec;
-}
-
-template <typename T>
-T bevholtDa(const T srp, const std::vector<double> params){
-    T rec;
-
-    // rec = a / (1 + (b / srp) ^ d)
-    rec = params[0] / (1 + pow(params[1] / srp, params[2]));
+    // Insert the C++ arguments into the R environment.
+    env.assign("ssb", srp);
+    env.assign("params", params);
     
-    return rec;
-}
-
-template <typename T>
-T constant(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = a 
-    rec = params[0]; 
-    return rec;
-}
-
-template <typename T>
-T bevholtSS3(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = (4 * s * R0 * ssb) / (v * (1 - s) + ssb * (5 * s - 1)) 
-    double s = params[0];
-    double R0 = params[1];
-    double v = params[2];
+    // Get R's built-in 'parse' function from the base namespace.
+    Function parseFunc = Environment::base_env()["parse"];
     
-    // sratio is the recruits sex ratio, 1 if single sex model
-    //double sratio = 1.0;
-    //if (params.size() > 3) {
-    //  sratio = params[3];
-    //}
+    // Parse the provided formula call string into an R expression.
+    SEXP exprList = parseFunc(_["text"] = model_name);
     
-    // seasp is the prop of rec for the season, 1 if single rec
-    // TODO BUT srp needs to come from spwn season
-    //double seasp = 1.0;
-    //if (params.size() > 4) {
-    //  seasp = params[4];
-    //}
-
-    // TODO ssbp is the prop of ssb active in a season, 1 if single rec
-    //double ssbp = 1.0;
-    //if (params.size() > 5) {
-    //  ssbp = params[5];
-    //}
-  
-    rec = (4.0 * s * R0 * srp) / (v * (1.0 - s) + srp * (5 * s - 1.0));
-
-    return rec;
-}
-
-template <typename T>
-T cushing(const T srp, const std::vector<double> params){
-  T rec;
-  // rec = a * srp ^ b
-  rec = params[0] * exp(log(srp)*params[1]);
-  return rec;
-}
-
-template <typename T>
-T segreg(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = if(ssb < b) a * ssb else a * b
-    if(srp <= params[1]) {
-      rec = params[0] * srp;
-    }
-    else {
-      rec = params[0] * params[1];
-    }
-    return rec;
-}
-
-template <typename T>
-T segregDa(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = if(ssb < b) a * ssb else a * b
-    if(pow(srp, params[2]) <= params[1]) {
-      rec = params[0] * pow(srp, params[2]);
-    }
-    else {
-      rec = params[0] * params[1];
-    }
-    return rec;
-}
-
-
-
-template <typename T>
-T survsrr(const T ssf, const std::vector<double> params){
-    T rec;
+    // Evaluate the first expression from the parsed results in the global environment.
+    NumericVector rec = Rcpp_eval(VECTOR_ELT(exprList, 0), env);
     
-    double R0 = params[0];
-    double sfrac = params[1];
-    double beta = params[2];
-    double SB0 = params[3];
-
-    // sratio is the recruits sex ratio, default 0.5 assumes 2 sex model
-    double sratio = 0.5;
-    if (params.size() > 4) {
-      sratio = params[4];
-    }
-
-    double z0 = log(1.0 / (SB0 / R0));
-    
-    double zmax = z0 + sfrac * (0.0 - z0);
-    
-    T zsurv = exp((1.0 - pow((ssf / SB0), beta)) * (zmax - z0) + z0);
-
-    // Sex ratio at recruitment set at 1:1
-    rec = ssf * zsurv * sratio;
-
-    return rec;
+    // Convert and return the result as a double.
+    return Rcpp::as<T>(rec);
+    //return static_cast<T>(REAL(rec)[0]);
+    //return rec;
 }
-
-template <typename T>
-T bevholtsig(const T srp, const std::vector<double> params){
-    T rec;
-    // rec = a / ((b / srp) ^c + 1)
-    rec = params[0] / (pow((params[1] / srp), params[2]) + 1);
-    return rec;
-}
-
-template <typename T>
-T mixedsrr(const T srp, const std::vector<double> params){
-    T rec;
-    
-    double a = params[0];
-    double b = params[1];
-    int mod = params[2];
-
-    // 1 Bevholt, rec = a * srp / (b + srp)
-    if (mod == 1) {
-      rec = a * srp / (b + srp);
-    } else if (mod == 2) {
-    // 2 Ricker, rec = a * srp * exp (-b * srp)
-      rec = a * srp * exp(-b * srp);
-    // 3 Segreg, rec = if(ssb < b) a * ssb else a * b
-    } else if (mod == 3) {
-      if(srp <= b) {
-        rec = a * srp;
-      } else {
-        rec = a * b;
-      }
-    }
-    return rec;
-}
-
-// Instantiate functions
-template double ricker(const double srp, const std::vector<double> params);
-template adouble ricker(const adouble srp, const std::vector<double> params);
-template double bevholt(const double srp, const std::vector<double> params);
-template adouble bevholt(const adouble srp, const std::vector<double> params);
-template double constant(const double srp, const std::vector<double> params);
-template adouble constant(const adouble srp, const std::vector<double> params);
-template double bevholtSS3(const double srp, const std::vector<double> params);
-template adouble bevholtSS3(const adouble srp, const std::vector<double> params);
-template double cushing(const double srp, const std::vector<double> params);
-template adouble cushing(const adouble srp, const std::vector<double> params);
-template double segreg(const double srp, const std::vector<double> params);
-template adouble segreg(const adouble srp, const std::vector<double> params);
-template double survsrr(const double srp, const std::vector<double> params);
-template adouble survsrr(const adouble srp, const std::vector<double> params);
-template double bevholtsig(const double srp, const std::vector<double> params);
-template adouble bevholtsig(const adouble srp, const std::vector<double> params);
-template double mixedsrr(const double srp, const std::vector<double> params);
-template adouble mixedsrr(const adouble srp, const std::vector<double> params);
+// 
+// // create a 'custom' SRR that links to a R-call of a specified function
+// 
+// template <typename T>
+// T customSRR(const T srp, const std::vector<double> params){
+//   T rec;
+//   // RInside R(srp, params, f_name);
+//   // T rec;
+//   // // call a specified R function from within C++
+//   // // use params specified in the params slot as env. covars
+//   // Rcpp::Function f(f_name)
+//   // const T rec = f(ssb = srp,covars = params)
+//   // R.parseEval(rec,ans);
+//   // rec = double ans;
+//   // return rec;
+//   
+//   // Rcpp::Function f(f_name);
+//   
+//   // Rcpp::NumericVector rec = f(srp,params);
+//   // rec = f(srp,params);
+//   return rec;
+// }
+// 
+// 
+// // Rcpp::NumericVector customSRR(const T srp, const std::vector<double> params, const char *f_name[]){
+// //   // RInside R(srp, params, f_name);
+// //   // call a specified R function from within C++
+// //   // use params specified in the params slot as env. covars
+// //   Rcpp::Function f(f_name);
+// //   Rcpp::NumericVector rec = f(srp,params);
+// //   return rec;
+// // }
+// 
+// 
+// template <typename T>
+// T bevholt(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+// 
+//     // rec = a * srp / (b + srp)
+//     rec = params[0] * srp / (params[1] + srp);
+// 
+//     if (params.size() > 2) {
+//       // rec = a / (1 + (b / srp) ^ d)
+//       rec = params[0] / (1 + pow(params[1] / srp, params[2]));
+//     }
+//     
+//     return rec;
+// }
+// 
+// template <typename T>
+// T bevholtDa(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+// 
+//     // rec = a / (1 + (b / srp) ^ d)
+//     rec = params[0] / (1 + pow(params[1] / srp, params[2]));
+//     
+//     return rec;
+// }
+// 
+// template <typename T>
+// T constant(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     // rec = a 
+//     rec = params[0]; 
+//     return rec;
+// }
+// 
+// template <typename T>
+// T bevholtSS3(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     // rec = (4 * s * R0 * ssb) / (v * (1 - s) + ssb * (5 * s - 1)) 
+//     double s = params[0];
+//     double R0 = params[1];
+//     double v = params[2];
+//     
+//     // sratio is the recruits sex ratio, 1 if single sex model
+//     //double sratio = 1.0;
+//     //if (params.size() > 3) {
+//     //  sratio = params[3];
+//     //}
+//     
+//     // seasp is the prop of rec for the season, 1 if single rec
+//     // TODO BUT srp needs to come from spwn season
+//     //double seasp = 1.0;
+//     //if (params.size() > 4) {
+//     //  seasp = params[4];
+//     //}
+// 
+//     // TODO ssbp is the prop of ssb active in a season, 1 if single rec
+//     //double ssbp = 1.0;
+//     //if (params.size() > 5) {
+//     //  ssbp = params[5];
+//     //}
+//   
+//     rec = (4.0 * s * R0 * srp) / (v * (1.0 - s) + srp * (5 * s - 1.0));
+// 
+//     return rec;
+// }
+// 
+// template <typename T>
+// T cushing(const T srp, const std::vector<double> params, char *f_name[]){
+//   T rec;
+//   // rec = a * srp ^ b
+//   rec = params[0] * exp(log(srp)*params[1]);
+//   return rec;
+// }
+// 
+// template <typename T>
+// T segreg(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     // rec = if(ssb < b) a * ssb else a * b
+//     if(srp <= params[1]) {
+//       rec = params[0] * srp;
+//     }
+//     else {
+//       rec = params[0] * params[1];
+//     }
+//     return rec;
+// }
+// 
+// template <typename T>
+// T segregDa(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     // rec = if(ssb < b) a * ssb else a * b
+//     if(pow(srp, params[2]) <= params[1]) {
+//       rec = params[0] * pow(srp, params[2]);
+//     }
+//     else {
+//       rec = params[0] * params[1];
+//     }
+//     return rec;
+// }
+// 
+// 
+// 
+// template <typename T>
+// T survsrr(const T ssf, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     
+//     double R0 = params[0];
+//     double sfrac = params[1];
+//     double beta = params[2];
+//     double SB0 = params[3];
+// 
+//     // sratio is the recruits sex ratio, default 0.5 assumes 2 sex model
+//     double sratio = 0.5;
+//     if (params.size() > 4) {
+//       sratio = params[4];
+//     }
+// 
+//     double z0 = log(1.0 / (SB0 / R0));
+//     
+//     double zmax = z0 + sfrac * (0.0 - z0);
+//     
+//     T zsurv = exp((1.0 - pow((ssf / SB0), beta)) * (zmax - z0) + z0);
+// 
+//     // Sex ratio at recruitment set at 1:1
+//     rec = ssf * zsurv * sratio;
+// 
+//     return rec;
+// }
+// 
+// template <typename T>
+// T bevholtsig(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     // rec = a / ((b / srp) ^c + 1)
+//     rec = params[0] / (pow((params[1] / srp), params[2]) + 1);
+//     return rec;
+// }
+// 
+// template <typename T>
+// T mixedsrr(const T srp, const std::vector<double> params, char *f_name[]){
+//     T rec;
+//     
+//     double a = params[0];
+//     double b = params[1];
+//     int mod = params[2];
+// 
+//     // 1 Bevholt, rec = a * srp / (b + srp)
+//     if (mod == 1) {
+//       rec = a * srp / (b + srp);
+//     } else if (mod == 2) {
+//     // 2 Ricker, rec = a * srp * exp (-b * srp)
+//       rec = a * srp * exp(-b * srp);
+//     // 3 Segreg, rec = if(ssb < b) a * ssb else a * b
+//     } else if (mod == 3) {
+//       if(srp <= b) {
+//         rec = a * srp;
+//       } else {
+//         rec = a * b;
+//       }
+//     }
+//     return rec;
+// }
+// 
+// // Instantiate functions
+template double customSRR(const double srp, const std::vector<double> params,const std::string model_name);
+//template adouble customSRR(const adouble srp, const std::vector<double> params,const std::string model_name);
+// template double customSRR(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble customSRR(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double bevholt(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble bevholt(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double constant(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble constant(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double bevholtSS3(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble bevholtSS3(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double cushing(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble cushing(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double segreg(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble segreg(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double survsrr(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble survsrr(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double bevholtsig(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble bevholtsig(const adouble srp, const std::vector<double> params, char *f_name[]);
+// template double mixedsrr(const double srp, const std::vector<double> params, char *f_name[]);
+// template adouble mixedsrr(const adouble srp, const std::vector<double> params, char *f_name[]);

@@ -3,3 +3,4 @@ src/*.so
 src/*.a
 vignettes/*.pdf
 *.swp
+.Rproj.user

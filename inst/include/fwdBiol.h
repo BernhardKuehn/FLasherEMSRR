@@ -67,7 +67,7 @@ class fwdBiol_base {
         FLQuant& mat();
 
         // SRR accessors
-        FLQuant_base<T> predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices);
+        FLQuant_base<T> predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices, const std::string model_name);
         bool does_recruitment_happen(unsigned int unit, unsigned int year, unsigned int season) const;
         bool has_recruitment_happened(unsigned int unit, unsigned int year, unsigned int season) const;
 

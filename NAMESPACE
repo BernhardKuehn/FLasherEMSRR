@@ -5,6 +5,7 @@ importFrom(ggplot2,
   "geom_vline",
   "annotate")
 import(FLFishery)
+import(RInside)
 importFrom(Rcpp,
   "evalCpp")
 importFrom(rlang,

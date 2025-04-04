@@ -28,14 +28,14 @@ class fwdSR_base {
 		fwdSR_base& operator = (const fwdSR_base& fwdSR_base_source); // Assignment operator for a deep copy
 
         // Evaluate the model only 1 value at a time
-        T eval_model(const T srp, int year, int unit, int season, int area, int iter) const;
-        T eval_model(const T srp, const std::vector<unsigned int> params_indices) const;
+        T eval_model(const T srp, int year, int unit, int season, int area, int iter ,const std::string model_name) const;
+        T eval_model(const T srp, const std::vector<unsigned int> params_indices,const std::string model_name) const;
 
         // Predict recruitment. As eval() but also applies the deviances
-        FLQuant_base<T> predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices);
+        FLQuant_base<T> predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices ,const std::string model_name);
         
         // Typedef for the SRR model functions
-        typedef T (*srr_model_ptr)(const T, const std::vector<double>);
+        typedef T (*srr_model_ptr)(const T, const std::vector<double>, const std::string);
         typedef std::map<std::string, srr_model_ptr> model_map_type;
         void init_model_map();
 
@@ -53,7 +53,7 @@ class fwdSR_base {
         bool has_recruitment_happened(unsigned int unit, unsigned int year, unsigned int season) const;
 
     private:
-        T (*model) (const T, const std::vector<double>); // Pointer to SRR function
+        T (*model) (const T, const std::vector<double>,const std::string); // Pointer to SRR function
         std::string model_name;
         FLQuant_base<double> params;
         FLQuant_base<double> deviances;
@@ -63,39 +63,44 @@ class fwdSR_base {
 
 typedef fwdSR_base<double> fwdSR;
 typedef fwdSR_base<adouble> fwdSRAD;
-
-//------------------------------------------------------------------
-// SRR functions
-
+// 
+// //------------------------------------------------------------------
+// // SRR functions
+// 
 template <typename T>
-T ricker(const T srp, const std::vector<double> params);
-
-template <typename T>
-T bevholt(const T srp, const std::vector<double> params);
-
-template <typename T>
-T bevholtDa(const T srp, const std::vector<double> params);
-
-template <typename T>
-T constant(const T srp, const std::vector<double> params);
-
-template <typename T>
-T bevholtSS3(const T srp, const std::vector<double> params);
-
-template <typename T>
-T cushing(const T srp, const std::vector<double> params);
-
-template <typename T>
-T segreg(const T srp, const std::vector<double> params);
-
-template <typename T>
-T segregDa(const T srp, const std::vector<double> params);
-
-template <typename T>
-T survsrr(const T srp, const std::vector<double> params);
-
-template <typename T>
-T bevholtsig(const T srp, const std::vector<double> params);
-
-template <typename T>
-T mixedsrr(const T srp, const std::vector<double> params);
+T customSRR(const T srp, const std::vector<double> params,const std::string model_name);
+// 
+// template <typename T>
+// T customSRR(const T srp, const std::vector<double> params, char *f_name[]);
+// 
+// // double customSRR(const srp, const std::vector<double> params, char *f_name[]);
+// 
+// template <typename T>
+// T bevholt(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T bevholtDa(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T constant(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T bevholtSS3(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T cushing(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T segreg(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T segregDa(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T survsrr(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T bevholtsig(const T srp, const std::vector<double> params);
+// 
+// template <typename T>
+// T mixedsrr(const T srp, const std::vector<double> params);

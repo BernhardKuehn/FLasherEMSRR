@@ -21,9 +21,10 @@ Depends:
 Imports:
   methods,
   Rcpp (>= 0.12.0),
+  RInside,
   rlang,
   ggplot2
-LinkingTo: Rcpp
+LinkingTo: Rcpp, RInside
 SystemRequirements: C++11
 Byarch: false
 Additional_repositories: https://flr.r-universe.dev
