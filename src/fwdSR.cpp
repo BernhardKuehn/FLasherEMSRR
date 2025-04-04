@@ -4,6 +4,7 @@
  */
 
 #include "../inst/include/fwdSR.h"
+#include "../inst/include/adouble_converter.h" // used for converting SEXP types to adouble
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -381,7 +382,7 @@ bool fwdSR_base<T>::has_recruitment_happened(unsigned int unit, unsigned int yea
 
 // Explicit instantiation of class
 template class fwdSR_base<double>;
-//template class fwdSR_base<adouble>;
+template class fwdSR_base<adouble>;
 
 // //--------------------------------------------------------------------
 // // SRR functions
@@ -392,7 +393,7 @@ template class fwdSR_base<double>;
 // // These functions must have the same argument list so that it matches the typedef for the model pointer
 template <typename T>
 T customSRR(const T srp, const std::vector<double> params,const std::string model_name){
-    //T rec;
+    T rec;
     // Use the global environment so that any function (such as predefined_function) is found.
     Environment env = Environment::global_env();
     
@@ -407,10 +408,13 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     SEXP exprList = parseFunc(_["text"] = model_name);
     
     // Evaluate the first expression from the parsed results in the global environment.
-    NumericVector rec = Rcpp_eval(VECTOR_ELT(exprList, 0), env);
-    
+    SEXP result = Rcpp_eval(VECTOR_ELT(exprList, 0), env);
+    // coerse to a double first
+    double d = Rcpp::as<double>(result);
+    // than coersing it to the template format allowing to be cast to "adouble" correctly
+    rec = T(d);
     // Convert and return the result as a double.
-    return Rcpp::as<T>(rec);
+    return rec;
     //return static_cast<T>(REAL(rec)[0]);
     //return rec;
 }
@@ -611,7 +615,7 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
 // 
 // // Instantiate functions
 template double customSRR(const double srp, const std::vector<double> params,const std::string model_name);
-//template adouble customSRR(const adouble srp, const std::vector<double> params,const std::string model_name);
+template adouble customSRR(const adouble srp, const std::vector<double> params,const std::string model_name);
 // template double customSRR(const double srp, const std::vector<double> params, char *f_name[]);
 // template adouble customSRR(const adouble srp, const std::vector<double> params, char *f_name[]);
 // template double bevholt(const double srp, const std::vector<double> params, char *f_name[]);
