@@ -18,6 +18,6 @@ NULL
 #'@param nr_iters Maximum number of iterations for solver.
 #'@rdname operatingModelRun
 operatingModelRun <- function(flfs, biols, ctrl, effort_max, effort_mult_initial, indep_min, indep_max, nr_iters = 50L) {
-    .Call('_FLasher_operatingModelRun', PACKAGE = 'FLasher', flfs, biols, ctrl, effort_max, effort_mult_initial, indep_min, indep_max, nr_iters)
+    .Call('_FLasherEMSRR_operatingModelRun', PACKAGE = 'FLasherEMSRR', flfs, biols, ctrl, effort_max, effort_mult_initial, indep_min, indep_max, nr_iters)
 }
 
