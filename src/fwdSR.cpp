@@ -43,6 +43,7 @@ fwdSR_base<T>::fwdSR_base(){
 template <typename T>
 fwdSR_base<T>::fwdSR_base(const std::string model_name_ip, const FLQuant params_ip, const FLQuant deviances_ip, const bool deviances_mult_ip) {
     model_name = model_name_ip;
+    std::cout << model_name; // print for debugging
     params = params_ip;
     deviances = deviances_ip;
     deviances_mult = deviances_mult_ip;
@@ -50,6 +51,7 @@ fwdSR_base<T>::fwdSR_base(const std::string model_name_ip, const FLQuant params_
     // Set the model pointer
     // always map to the customSRR-function as nothing else is defined
     typename model_map_type::const_iterator model_pair_found = map_model_name_to_function.find("customSRR");
+    //std::cout << model_pair_found; // print for debugging
     if (model_pair_found != map_model_name_to_function.end()){
         model = model_pair_found->second; // pulls out value - the address of the SR function
     }

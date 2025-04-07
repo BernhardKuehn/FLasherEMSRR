@@ -487,7 +487,7 @@ std::vector<adouble> operatingModel::calc_rec(const unsigned int biol_no, const 
   // get recruitment name model pointer
   std::string srmodel = biols(biol_no).get_srr().get_model_name();
   // print out
-  std::cout << srmodel; // for debugging
+  //std::cout << srmodel; // for debugging
  // remove part of the formula 
  std::string toRemove = "rec~";
  std::string::size_type i = srmodel.find(toRemove);
@@ -496,7 +496,7 @@ std::vector<adouble> operatingModel::calc_rec(const unsigned int biol_no, const 
   
   // predict recruitment
   FLQuantAD rec = biols(biol_no).predict_recruitment(srpq, initial_params_indices, srmodel);
-  Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,1))); // for debugging
+  // Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,1))); // for debugging
   if(verbose) {
     for (unsigned int i=1; i<=niter; ++i){
       Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,i)));
