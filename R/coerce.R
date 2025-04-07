@@ -192,3 +192,29 @@ setAs("fwdControl", "FLQuant",
   }
 )
 # }}}
+
+# add a modified converserion function to allow for a more flexible definition of a SRR
+
+# TO FLBiolcpp {{{
+setAs('FLBiol', 'FLBiolcpp',
+      function(from) {
+        if("year" %in% names(from@rec@params))
+          srparams <- window(as(from@rec@params, "FLQuant"),
+                             start=dims(from)$minyear, end=dims(from)$maxyear)
+        else
+          srparams <- as(from@rec@params, "FLQuant")
+        new("FLBiolcpp",
+            name = name(from),
+            desc = desc(from),
+            range = range(from),
+            n = n(from),
+            m = m(from),
+            wt = wt(from),
+            mat = mat(from),
+            fec = fec(from),
+            spwn = spwn(from),
+            srmodel = as.character(from@rec@model)[[3]],
+            srparams = srparams)
+      }
+) # }}}
+
