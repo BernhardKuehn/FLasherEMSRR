@@ -487,9 +487,12 @@ std::vector<adouble> operatingModel::calc_rec(const unsigned int biol_no, const 
   // get recruitment name model pointer
   std::string srmodel = biols(biol_no).get_srr().get_model_name();
   // print out
-  std::cout << srmodel;
+  str::string message = "SRR: " 
+  std::cout << message  + srmodel; // for debugging
   // predict recruitment
   FLQuantAD rec = biols(biol_no).predict_recruitment(srpq, initial_params_indices, srmodel);
+  str::string message = "Prediced Recruitment: "
+  std::cout << message + rec; // for debugging
   if(verbose) {
     for (unsigned int i=1; i<=niter; ++i){
       Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,i)));
