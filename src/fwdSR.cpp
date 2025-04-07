@@ -163,6 +163,7 @@ template <typename T>
 T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int area, int iter, const std::string model_name) const{
     // Get the parameters
     std::vector<double> model_params = get_params(year, unit, season, area, iter);
+    Rprintf("Params: %f\n", model_params);
     // Check if any params are NA - if so, don't evaluate model, set rec to 0.0 for clean exit
     // Check first value to see if bad for clean exit
     //Rprintf("size model_params: %i \n", model_params.size());
