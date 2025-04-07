@@ -292,7 +292,7 @@ setMethod("fwd", signature(object="FLBiols", fishery="FLFisheries",
   
   # CALL operatingModelRun
   # TODO: PASS to C++ only projection years of rfishery and biolscpp
-  out <- FLasherEMSRR::operatingModelRun(rfishery, biolscpp, control,
+  out <- FLasherEMSRR:::operatingModelRun(rfishery, biolscpp, control,
     effort_max = c(effort_max * effscale), effort_mult_initial = 1.0,
     indep_min = sqrt(.Machine$double.xmin), indep_max = 1e12, nr_iters = 50)
 
