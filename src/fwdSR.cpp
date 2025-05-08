@@ -400,14 +400,16 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
   for(int i=0; i<params.size(); ++i){
     Rprintf("the value of params[%i] : %f \n", i, params[i]);
   }
-  
-  Rprintf("the value of params: %f \n", params);
+    
     // Use the global environment so that any function (such as predefined_function) is found.
     Environment env = Environment::global_env();
     
     // Insert the C++ arguments into the R environment.
     env.assign("ssb", srp);
     env.assign("params", params);
+    
+    double ssb_print = env["ssb"];
+    Rprintf("the value of SSB : %f \n", ssb_print);
     
     // Get R's built-in 'parse' function from the base namespace.
     Function parseFunc = Environment::base_env()["parse"];
@@ -419,8 +421,12 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     SEXP result = Rcpp_eval(VECTOR_ELT(exprList, 0), env);
     // coerse to a double first
     double d = Rcpp::as<double>(result);
+    
+    Rprintf("the value of Rec: %f \n", d);
+    
     // than coersing it to the template format allowing to be cast to "adouble" correctly
     rec = T(d);
+    
     // Convert and return the result as a double.
     return rec;
     //return static_cast<T>(REAL(rec)[0]);
