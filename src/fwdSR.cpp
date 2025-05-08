@@ -136,7 +136,8 @@ std::vector<double> fwdSR_base<T>::get_params(unsigned int year, unsigned int un
     }
     for (int i = 1; i <= nparams; ++i){
         model_params[i-1] = params(i,year,unit,season,area,iter);
-Rprintf("Year: %i Unit: %i Season: %i Iter: %i Param %i: %f\n",  year, unit, season, iter, i, model_params[i-1]);
+  // uncomment for debugging: 
+  // Rprintf("Year: %i Unit: %i Season: %i Iter: %i Param %i: %f\n",  year, unit, season, iter, i, model_params[i-1]);
     }
     return model_params;
 }
@@ -163,7 +164,9 @@ template <typename T>
 T fwdSR_base<T>::eval_model(const T srp, int year, int unit, int season, int area, int iter, const std::string model_name) const{
     // Get the parameters
     std::vector<double> model_params = get_params(year, unit, season, area, iter);
-    Rprintf("Params: %f\n", model_params);
+    
+    // uncomment for debugging: 
+    // Rprintf("Params: %f\n", model_params);
     // Check if any params are NA - if so, don't evaluate model, set rec to 0.0 for clean exit
     // Check first value to see if bad for clean exit
     //Rprintf("size model_params: %i \n", model_params.size());
@@ -397,10 +400,11 @@ template class fwdSR_base<adouble>;
 template <typename T>
 T customSRR(const T srp, const std::vector<double> params,const std::string model_name){
     T rec;
-  for(int i=0; i<params.size(); ++i){
-    Rprintf("the value of params[%i] : %f \n", i, params[i]);
-  }
-    
+  
+  // uncommment for debugging
+  // for(int i=0; i<params.size(); ++i){
+  //   Rprintf("the value of params[%i] : %f \n", i, params[i]);
+  // }
     // Use the global environment so that any function (such as predefined_function) is found.
     Environment env = Environment::global_env();
     
@@ -408,8 +412,9 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     env.assign("ssb", srp);
     env.assign("params", params);
     
-    double ssb_print = env["ssb"];
-    Rprintf("the value of SSB : %f \n", ssb_print);
+    // uncomment for debugging: 
+    //double ssb_print = env["ssb"];
+    //Rprintf("the value of SSB : %f \n", ssb_print);
     
     // Get R's built-in 'parse' function from the base namespace.
     Function parseFunc = Environment::base_env()["parse"];
@@ -422,7 +427,8 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     // coerse to a double first
     double d = Rcpp::as<double>(result);
     
-    Rprintf("the value of Rec: %f \n", d);
+    // uncomment for debugging:
+    //Rprintf("the value of Rec: %f \n", d);
     
     // than coersing it to the template format allowing to be cast to "adouble" correctly
     rec = T(d);
