@@ -136,7 +136,7 @@ std::vector<double> fwdSR_base<T>::get_params(unsigned int year, unsigned int un
     }
     for (int i = 1; i <= nparams; ++i){
         model_params[i-1] = params(i,year,unit,season,area,iter);
-// Rprintf("Year: %i Unit: %i Season: %i Param %i: %f\n",  year, unit, season, i, model_params[i-1]);
+Rprintf("Year: %i Unit: %i Season: %i Param %i: %f\n",  year, unit, season, i, model_params[i-1]);
     }
     return model_params;
 }
@@ -397,6 +397,11 @@ template class fwdSR_base<adouble>;
 template <typename T>
 T customSRR(const T srp, const std::vector<double> params,const std::string model_name){
     T rec;
+  // for(int i=0; i<params.length(); ++i){
+  //   Rprintf("the value of params[%i] : %f \n", i, params[i]);
+  // }
+  
+  Rprintf("the value of params: %f \n", params);
     // Use the global environment so that any function (such as predefined_function) is found.
     Environment env = Environment::global_env();
     
