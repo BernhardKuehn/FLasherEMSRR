@@ -28,6 +28,12 @@ options(devtools.install.args = "--no-multiarch")
 install_github("BernhardKuehn/FLasherEMSRR")
 ```
 
+## Usage
+
+> [!CAUTION]
+> IMPORTANT: When using this package, also in combination with the [mseEMSRR-package](https://github.com/BernhardKuehn/mseEMSRR), make sure NOT to load the original 'FLasher' package within the same session, as this will cause errors due to overlapping function and class definitions.
+
+
 ## Documentation
 - [Forecasting on the Medium Term for advice using FLasher](https://flr-project.org/doc/Forecasting_on_the_Medium_Term_for_advice_using_FLasher.html)
 - [Help pages](http://flr-project.org/FLasher)
