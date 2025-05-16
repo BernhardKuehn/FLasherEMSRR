@@ -43,7 +43,7 @@ fwdSR_base<T>::fwdSR_base(){
 template <typename T>
 fwdSR_base<T>::fwdSR_base(const std::string model_name_ip, const FLQuant params_ip, const FLQuant deviances_ip, const bool deviances_mult_ip) {
     model_name = model_name_ip;
-    std::cout << model_name; // print for debugging
+    // std::cout << model_name; // print for debugging
     params = params_ip;
     deviances = deviances_ip;
     deviances_mult = deviances_mult_ip;
