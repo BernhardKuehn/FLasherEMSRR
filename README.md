@@ -1,7 +1,4 @@
-# FLasherEMSRR 
-
-## This is a fork of the flr-package 'FLasher'! Currently this 'Readme' copies only what was written there. Will be updated if full functionality of the package is ready!
-
+# FLasherEMSRR  <img src="hexsticker/hexsticker.png" align="right" width="170" />
 
 [![R-CMD-check](https://github.com/BernhardKuehn/FLasherEMSRR/workflows/R-CMD-check/badge.svg)](https://github.com/BernhardKuehn/FLasherEMSRR/actions)
 [![License](https://flr-project.org/img/eupl_1.1.svg)](https://joinup.ec.europa.eu/licence/european-union-public-licence-version-11-or-later-eupl)
@@ -43,9 +40,8 @@ Copyright (c) 2016-2022 European Union. Released under the [EUPL v1.2](https://e
 
 ## Contact
 For info on the main-functionality of the 'FLasher' package:
-- Author: Finlay Scott and Iago Mosqueira (EC-JRC).
-- Maintainer: Iago Mosqueira <iago.mosqueira@wur.nl>
-  
+- Author(s) of 'FLasher': Finlay Scott and Iago Mosqueira (EC-JRC).
+- Maintainer of 'FlasherEMSRR': Bernhard Kuehn  
 For the small extension allowing the incorporation of flexible SRRs:
 - Contact: Bernhard Kuehn 
 
