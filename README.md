@@ -2,7 +2,7 @@
 
 [![R-CMD-check](https://github.com/BernhardKuehn/FLasherEMSRR/workflows/R-CMD-check/badge.svg)](https://github.com/BernhardKuehn/FLasherEMSRR/actions)
 [![License](https://flr-project.org/img/eupl_1.1.svg)](https://joinup.ec.europa.eu/licence/european-union-public-licence-version-11-or-later-eupl)
-[![Codecov test coverage](https://codecov.io/gh/BernhardKuehn/FLasherEMSRR/branch/master/graph/badge.svg)](https://codecov.io/gh/BernhardKuehn/FLasherEMSRR?branch=master)
+[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](<Redirect-URL>)
 
 ## Overview
 
