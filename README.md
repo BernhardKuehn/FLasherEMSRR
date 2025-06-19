@@ -30,6 +30,11 @@ install_github("BernhardKuehn/FLasherEMSRR")
 > [!CAUTION]
 > IMPORTANT: When using this package, also in combination with the [mseEMSRR-package](https://github.com/BernhardKuehn/mseEMSRR), make sure NOT to load the original 'FLasher' package within the same session, as this will cause errors due to overlapping function and class definitions.
 
+To incorporate an explicit environmentally-mediated stock recruitment relationship one needs basically two things: 
+- a fitted model object & an accompanying 'predict' function working with SSB and an environmental covariate
+- an environmental covariate for the projection period
+  
+The way it is currently implemented is putting the covariate in the 'params' slot in the SR-object and having the 'predict' call working with the arguments 'ssb' and 'params'. A simple example showing some workable code in a vignette is still under construction and will be available in the upcoming months...
 
 ## Documentation
 - [Forecasting on the Medium Term for advice using FLasher](https://flr-project.org/doc/Forecasting_on_the_Medium_Term_for_advice_using_FLasher.html)
