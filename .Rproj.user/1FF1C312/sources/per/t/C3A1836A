@@ -1,0 +1,26 @@
+{
+    "id": "C3A1836A",
+    "path": "C:/Users/kuehn/Desktop/integrate R-func into C++/01_execute R from C++.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "4122992279",
+    "contents": "",
+    "dirty": false,
+    "created": 1743665030782.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "6,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1743672439,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1743672439250,
+    "read_only": false,
+    "read_only_alternatives": []
+}

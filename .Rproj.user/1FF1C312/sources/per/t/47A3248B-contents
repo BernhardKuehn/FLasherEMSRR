@@ -1,0 +1,242 @@
+
+# use the forked FLasher_emsrr, will overwrite the existing FLasher for the moment
+devtools::install_github("BernhardKuehn/FLasherEMSRR")
+
+library(mgcv)
+library(FLCore)
+library(ggplotFL)
+library(FLasherEMSRR)
+
+
+data(ple4)
+DIM <- dim(ple4)
+df <- as.data.frame(ssb(ple4))[-DIM[2],]
+names(df)[names(df)=="data"] <- "ssb"
+df$rec <- c(rec(ple4))[-1]
+
+set.seed(1234)
+df$sst <- c(arima.sim(model = list(ar = 0.5), n = nrow(df), sd = 2) + 15)
+plot(df$sst, df$rec, t = "l")
+
+
+gamfit <- gam(formula = rec ~ s(ssb, k = 4, fx = 1) + s(sst, k = 10), data = df, family = gaussian(link = "log"))
+plot(gamfit, pages = 1)
+summary(gamfit)
+
+srr <- as.FLSR(propagate(ple4, 100))
+
+# prediction function (dummy.parame used at placeholder for non-existent params; only covars)
+gampredict <- function(ssb, dummy.param, sst){
+  newdat <- data.frame(ssb = as.numeric(ssb), sst = as.numeric(sst))
+  pred = predict(gamfit, newdata = newdat, type = "response")
+  pred = FLQuant(as.vector(pred))
+  return(pred)
+}
+
+# model list
+gamsrr <- function() {
+  list(model = rec~gampredict(ssb, dummy.param, sst))
+}
+
+#model(srr) <- gamsrr
+
+bevholt = gamsrr()
+
+
+# add params and covars
+first.yr = range(srr)[["minyear"]]
+last.yr = range(srr)[["maxyear"]]
+
+it = dim(srr)[6]
+params(srr) = FLPar(array(0,dim = c(1,it),dimnames = list(params = "dummy.param",
+                                                          iter = 1:it)))
+  # FLPar(array(0,dim=c(1,length(first.yr:last.yr),1,1,1,it),
+    #                dimnames=list(param=c("dummy.param"),
+     #                             year=as.character(first.yr:last.yr),
+      #                            unit = "unique",
+       #                           season=1,
+        #                          area = "unique",
+         #                         iter=1:it)))
+# as(FLQuant(params(srr)),"FLQuant")
+# as(params(srr),"FLQuant")
+# from = srr
+# names(from@params)
+# window(as(srr@params, "FLQuant"),
+#        start=dims(from)$minyear, end=dims(from)$maxyear)
+
+#source("./functions_dev/coerce_FLCore.R")
+
+
+
+covar(srr) <- FLQuants(sst=rec(srr) %=% +0.07*(1:60)+rnorm(100*dim(rec(srr))[2],17,sd = 5))
+srr
+
+plot(covar(srr)$sst)
+
+# test prediction
+
+pred.rec = predict(gamfit, newdata = data.frame(ssb = 2.5E5,
+  sst = 0.07*(1:60)+rnorm(dim(rec(srr))[2],10,sd = 5)),type = "response")
+plot(pred.rec,type = "l")
+
+pre <- predict(srr)
+plot(pre)
+
+# run with ffwd (works)
+ple4gam <- FLCore::ffwd(ple4, sr=srr, fbar=fbar(ple4)[, ac(2000:2017)])
+
+stks <- FLStocks(list(orig = ple4, gam = ple4gam))
+plot(stks) 
+
+
+# run with fwd (doesn't work)
+#ctrl <- FLasher::fwdControl(year = ac(2000:2017),
+#                            value = as.numeric(fbar(ple4)[, ac(2000:2017)]), quant = "fbar")
+#ctrl <- fwdControl(year = ac(2000:2017), value = fbar(ple4)[, ac(2000:2017)], quant = "fbar", iters = 1:100)
+ ctrl = fwdControl(data.frame(year = ac(2000:2017),
+                       value = as.numeric(fbar(ple4)[, ac(2000:2017)]),
+                       quant = "fbar"),iters = 100)
+# ctrl = propagate(ctrl,100)
+#ctrl <- fwdControl(year = ac(2000:2017), value = fbar(ple4)[, ac(2000:2017)], quant = "fbar", iters = 100)
+
+
+ple4ext <- propagate(ple4, 100)
+
+#model(srr) = "bevholt"
+#SRModelName("gamsrr")
+
+# setAs('FLBiol', 'FLBiolcpp',
+#       function(from) {
+#         if("year" %in% names(from@rec@params))
+#           srparams <- window(as(from@rec@params, "FLQuant"),
+#                              start=dims(from)$minyear, end=dims(from)$maxyear)
+#         else
+#           srparams <- as(from@rec@params, "FLQuant")
+# 
+#         new("FLBiolcpp",
+#             name = name(from),
+#             desc = desc(from),
+#             range = range(from),
+#             n = n(from),
+#             m = m(from),
+#             wt = wt(from),
+#             mat = mat(from),
+#             fec = fec(from),
+#             spwn = spwn(from),
+#             srmodel = "bevholt",#SRModelName(from@rec@model),
+#             srparams = srparams)
+#       }
+# )
+
+model(srr) = bevholt
+params(srr) = FLPar(array(0,dim = c(1,it),dimnames = list(params = "dummy.param",
+                                                          iter = 1:it)))
+covar(srr) <- FLQuants(sst=rec(srr) %=% +0.07*(1:60)+rnorm(100*dim(rec(srr))[2],17,sd = 5))
+
+srr
+ple4gam2 <- fwd(ple4ext, sr=srr, control = ctrl)
+
+ple4gam2@stock.n[1,]
+
+# Error in validObject(.Object) : 
+#   invalid class “FLBiolcpp” object: invalid object for slot "srmodel" in class "FLBiolcpp": got class "NULL", should be or extend class "character"
+
+stks <- FLStocks(list(orig = ple4, gam = ple4gam2))
+plot(stks) 
+
+# ---------------------------------------------------- # 
+# try to write the covar in the params slot
+bevholt = gamsrr
+model(srr) = gamsrr#bevholt
+class(model(srr))
+
+sst = rec(srr) %=% +0.07*(1:60)+rnorm(100*dim(rec(srr))[2],17,sd = 5)
+
+# a = array(0,dim = c(1,length(2000:2017),it),dimnames = list(params = "dummy.param",year = 2000:2017,
+#                                      iter = 1:it))
+b = array(as.numeric(sst[1,1,]),dim = c(1,length(2000:2017),it),dimnames = list(params = "sst",year = 2000:2017,
+                                          iter = 1:it))
+#ab = DescTools::Abind(a,b,along = 1)
+#names(dimnames(ab)) = c("params","year","iter")
+
+names(dimnames(b)) = c("params","year","iter")
+
+# only put sst in there
+params(srr) = FLPar(b)
+
+#library(DescTools)                    
+#ar.params = Abind(as.array(dummy.param),sst,along = 1)
+#dim(ar.params)
+#row.names(ar.params) = c("dummy.param","sst")
+
+#params(srr) = FLPar(ar.params)
+srr
+
+as(params(srr),"FLQuant")
+
+# library(Rcpp)
+# 
+# Rcpp::sourceCpp(file = "./functions_dev/callFunction.cpp")
+# 
+# callFunction(srp = 1E6,params = as.numeric(params(srr)[1:2,1,1]),
+#              f = gampredict)
+
+# one can put in a formula in the model(srr)-slot
+# model(srr) = as.formula(rec~function(srp,params,f = gampredict) return(callFunction(srp=srp,
+#                                             params = params,f = f)))
+# # doesn`t work to put it in as call, only as formula
+# model(srr) = quote(callFunction(srp=env$srp,
+#                                 params = env$params,f = env$f))
+
+
+# prediction function (dummy.parame used at placeholder for non-existent params; only covars)
+gampredict <- function(ssb, params){
+  newdat <- data.frame(ssb = as.numeric(ssb),
+                       params)
+  colnames(newdat) = colnames(gamfit$model)[-1]
+  pred = predict(gamfit, newdata = newdat, type = "response")
+  pred = FLQuant(as.vector(pred))
+  return(pred)
+}
+
+model(srr) = as.formula("rec~gampredict(ssb,params)")
+# put covar in parameter slot
+params(srr) = FLPar(b)
+
+# setAs('FLBiol', 'FLBiolcpp',
+#       function(from) {
+#         if("year" %in% names(from@rec@params))
+#           srparams <- window(as(from@rec@params, "FLQuant"),
+#                              start=dims(from)$minyear, end=dims(from)$maxyear)
+#         else
+#           srparams <- as(from@rec@params, "FLQuant")
+#         new("FLBiolcpp",
+#             name = name(from),
+#             desc = desc(from),
+#             range = range(from),
+#             n = n(from),
+#             m = m(from),
+#             wt = wt(from),
+#             mat = mat(from),
+#             fec = fec(from),
+#             spwn = spwn(from),
+#             srmodel = as.character(from@rec@model)[[3]],
+#             srparams = srparams)
+#       }
+# )
+
+
+ple4gam2 <- FLasherEMSRR::fwd(object = ple4ext, sr=srr, control = ctrl,verbose = T)
+
+ple4gam2@stock.n[1,]
+
+# Error in validObject(.Object) : 
+#   invalid class “FLBiolcpp” object: invalid object for slot "srmodel" in class "FLBiolcpp": got class "NULL", should be or extend class "character"
+
+stks <- FLStocks(list(orig = ple4, gam = ple4gam2))
+plot(stks) 
+
+
+
+
+

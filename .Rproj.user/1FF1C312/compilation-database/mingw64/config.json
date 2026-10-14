@@ -1,0 +1,27 @@
+{
+    "args": [
+        "-std=gnu++11",
+        "-IC:/PROGRA~1/R/R-44~1.2/include",
+        "-DNDEBUG",
+        "-IC:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include",
+        "-DRCPP_USE_UNWIND_PROTECT",
+        "-IC:/Users/kuehn/AppData/Local/R/win-library/4.4/Rcpp/include",
+        "-IC:/Users/kuehn/AppData/Local/R/win-library/4.4/RInside/include",
+        "-DEIGEN_DONT_VECTORIZE",
+        "-nostdinc",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include",
+        "-Ic:/rtools44/x86_64~1.pos/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed",
+        "-include",
+        "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/.Rproj.user/1FF1C312/compilation-database/mingw64/cpp-definitions.h"
+    ],
+    "pch": "Rcpp",
+    "is_cpp": true,
+    "hash": "174706074717418521381741852138",
+    "compiler": "1391768606531529385",
+    "rversion": "4.4.2",
+    "dbversion": 4
+}
