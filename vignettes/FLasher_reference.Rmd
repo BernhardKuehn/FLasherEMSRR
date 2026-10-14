@@ -17,7 +17,7 @@ license: European Union Public Licence (EUPL) V.1.1
 <!--
 ```{r, pkgs, echo=FALSE, message=FALSE}
 #library(Rcpp)
-#library(FLasher)
+#library(FLasherEMSRR)
 #library(ggplotFL)
 #library(knitr)
 #opts_chunk$set(dev='png', cache=FALSE, fig.width=5, fig.height=4.5, tidy=TRUE, dpi=300)

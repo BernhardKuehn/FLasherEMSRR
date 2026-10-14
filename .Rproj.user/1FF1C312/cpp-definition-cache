@@ -376,13 +376,13 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/FLasherEMSRR.h",
-        "file_last_write": 1747060739.0,
+        "file_last_write": 1791978395.0,
         "definitions": [],
         "hidden": false
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/adouble_converter.h",
-        "file_last_write": 1747060739.0,
+        "file_last_write": 1791979413.0,
         "definitions": [
             {
                 "usr": "c:adouble_converter.h@T@adouble",
@@ -405,10 +405,10 @@
                 "hidden": false
             },
             {
-                "usr": "c:@N@Rcpp@F@wrap#&1$@N@CppAD@S@AD>#d#",
+                "usr": "c:@N@Rcpp@F@wrap<#$@N@CppAD@S@AD>#d>#&1S0_#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "wrap(const adouble &)",
+                "name": "wrap<>(const adouble &)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/adouble_converter.h",
                 "line": 37,
                 "column": 10,
@@ -6330,7 +6330,7 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/fwdBiol.h",
-        "file_last_write": 1747060740.0,
+        "file_last_write": 1791979413.0,
         "definitions": [
             {
                 "usr": "c:fwdBiol.h@229@macro@_FLQuant_base_",
@@ -6366,7 +6366,7 @@
                 "usr": "c:@ST>1#T@fwdBiol_base",
                 "kind": 2,
                 "parent_name": "",
-                "name": "fwdBiol_base",
+                "name": "fwdBiol_base<T>",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/fwdBiol.h",
                 "line": 27,
                 "column": 7,
@@ -6396,7 +6396,7 @@
                 "usr": "c:@ST>1#T@fwdBiols_base",
                 "kind": 2,
                 "parent_name": "",
-                "name": "fwdBiols_base",
+                "name": "fwdBiols_base<T>",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/fwdBiol.h",
                 "line": 99,
                 "column": 7,
@@ -6654,7 +6654,7 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/fwdSR.h",
-        "file_last_write": 1747060740.0,
+        "file_last_write": 1791979413.0,
         "definitions": [
             {
                 "usr": "c:fwdSR.h@229@macro@_FLQuant_base_",
@@ -6680,7 +6680,7 @@
                 "usr": "c:@ST>1#T@fwdSR_base",
                 "kind": 2,
                 "parent_name": "",
-                "name": "fwdSR_base",
+                "name": "fwdSR_base<T>",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/inst/include/fwdSR.h",
                 "line": 21,
                 "column": 7,
@@ -6786,8 +6786,229 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
-        "file_last_write": 1747060740.0,
-        "definitions": [],
+        "file_last_write": 1791978395.0,
+        "definitions": [
+            {
+                "usr": "c:@S@FLQuant_base>#$@N@CppAD@S@AD>#d@F@fill<#d>#1d#",
+                "kind": 7,
+                "parent_name": "FLQuant_base<adouble>",
+                "name": "fill<>(const double)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 536,
+                "column": 29,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@operator*#&1d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "operator*(const double &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 721,
+                "column": 22,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@operator/#&1d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "operator/(const double &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 851,
+                "column": 22,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@operator-#&1d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "operator-(const double &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 992,
+                "column": 22,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@operator+#&1d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "operator+(const double &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1139,
+                "column": 22,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@dim_matcher#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "dim_matcher(const std::vector<unsigned int>, const std::vector<unsigned int>)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1206,
+                "column": 5,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@dim5_matcher#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "dim5_matcher(const std::vector<unsigned int>, const std::vector<unsigned int>)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1217,
+                "column": 5,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@pow#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#1d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "pow(const FLQuant_base<adouble> &, const double)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1235,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@pow#&1$@S@FLQuant_base>#d#1$@N@CppAD@S@AD>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "pow(const FLQuant_base<double> &, const adouble)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1242,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_mult#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_mult(const FLQuant_base<adouble> &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1306,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_mult#&1$@S@FLQuant_base>#d#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_mult(const FLQuant_base<double> &, const FLQuant_base<adouble> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1310,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_div#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_div(const FLQuant_base<adouble> &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1320,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_div#&1$@S@FLQuant_base>#d#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_div(const FLQuant_base<double> &, const FLQuant_base<adouble> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1324,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_plus#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_plus(const FLQuant_base<adouble> &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1334,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_plus#&1$@S@FLQuant_base>#d#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_plus(const FLQuant_base<double> &, const FLQuant_base<adouble> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1338,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_minus#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#&1$@S@FLQuant_base>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_minus(const FLQuant_base<adouble> &, const FLQuant_base<double> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1348,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@sweep_minus#&1$@S@FLQuant_base>#d#&1$@S@FLQuant_base>#$@N@CppAD@S@AD>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sweep_minus(const FLQuant_base<double> &, const FLQuant_base<adouble> &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1352,
+                "column": 23,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@FLPar_to_FLQuant#*$@S@SEXPREC#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "FLPar_to_FLQuant(SEXP)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1534,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@year_season_to_timestep#1i#1i#1i#&i#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "year_season_to_timestep(const unsigned int, const unsigned int, const unsigned int, unsigned int &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1593,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@timestep_to_year_season#1i#1i#&i#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "timestep_to_year_season(const unsigned int, const unsigned int, unsigned int &, unsigned int &)",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1597,
+                "column": 6,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@FLQuant_base>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "FLQuant_base<double>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1607,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@FLQuant_base>#$@N@CppAD@S@AD>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "FLQuant_base<adouble>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/FLQuant_base.cpp",
+                "line": 1608,
+                "column": 16,
+                "hidden": false
+            }
+        ],
         "hidden": false
     },
     {
@@ -6815,13 +7036,54 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdBiol.cpp",
-        "file_last_write": 1747060740.0,
-        "definitions": [],
+        "file_last_write": 1791979413.0,
+        "definitions": [
+            {
+                "usr": "c:@S@fwdBiol_base>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdBiol_base<double>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdBiol.cpp",
+                "line": 444,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@fwdBiol_base>#$@N@CppAD@S@AD>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdBiol_base<adouble>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdBiol.cpp",
+                "line": 445,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@fwdBiols_base>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdBiols_base<double>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdBiol.cpp",
+                "line": 446,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@fwdBiols_base>#$@N@CppAD@S@AD>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdBiols_base<adouble>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdBiol.cpp",
+                "line": 447,
+                "column": 16,
+                "hidden": false
+            }
+        ],
         "hidden": false
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-        "file_last_write": 1747060740.0,
+        "file_last_write": 1791978395.0,
         "definitions": [
             {
                 "usr": "c:@S@fwdControl@F@init_target_map#",
@@ -6839,7 +7101,7 @@
                 "parent_name": "fwdControl",
                 "name": "operator=(const fwdControl &)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 66,
+                "line": 68,
                 "column": 25,
                 "hidden": false
             },
@@ -6849,7 +7111,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_target",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 76,
+                "line": 78,
                 "column": 29,
                 "hidden": false
             },
@@ -6859,7 +7121,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_ntarget",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 82,
+                "line": 84,
                 "column": 26,
                 "hidden": false
             },
@@ -6869,7 +7131,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_niter",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 95,
+                "line": 97,
                 "column": 26,
                 "hidden": false
             },
@@ -6879,7 +7141,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_age_range(const unsigned int, const unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 102,
+                "line": 104,
                 "column": 39,
                 "hidden": false
             },
@@ -6889,7 +7151,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_nsim_target(unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 118,
+                "line": 120,
                 "column": 26,
                 "hidden": false
             },
@@ -6899,7 +7161,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_row(unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 146,
+                "line": 148,
                 "column": 39,
                 "hidden": false
             },
@@ -6909,7 +7171,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_row(unsigned int, unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 173,
+                "line": 175,
                 "column": 26,
                 "hidden": false
             },
@@ -6919,7 +7181,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_value(const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 195,
+                "line": 197,
                 "column": 33,
                 "hidden": false
             },
@@ -6929,67 +7191,67 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_value(const int, const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 215,
+                "line": 217,
                 "column": 33,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_int_col#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_int_col#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_int_col(const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 240,
+                "line": 242,
                 "column": 33,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_int_col#1I#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_int_col#1I#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_int_col(const int, const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 263,
+                "line": 265,
                 "column": 26,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_list_int_col#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_list_int_col#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_list_int_col(const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 274,
+                "line": 276,
                 "column": 24,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_list_int_col#1I#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_list_int_col#1I#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_list_int_col(const int, const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 292,
+                "line": 294,
                 "column": 33,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_num_col#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_num_col#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_num_col(const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 310,
+                "line": 312,
                 "column": 33,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_num_col#1I#1I#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_num_col#1I#1I#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_num_col(const int, const int, const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 333,
+                "line": 335,
                 "column": 20,
                 "hidden": false
             },
@@ -6999,7 +7261,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_quantity(const int, const int, const bool)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 348,
+                "line": 350,
                 "column": 25,
                 "hidden": false
             },
@@ -7009,17 +7271,17 @@
                 "parent_name": "fwdControl",
                 "name": "get_target_type(const int, const int, const bool)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 360,
+                "line": 362,
                 "column": 34,
                 "hidden": false
             },
             {
-                "usr": "c:@S@fwdControl@F@get_target_type#1I#1",
+                "usr": "c:@S@fwdControl@F@get_target_type#1$@N@std@N@__cxx11@S@basic_string>#C#$@N@std@S@char_traits>#C#$@N@std@S@allocator>#C#1",
                 "kind": 7,
                 "parent_name": "fwdControl",
                 "name": "get_target_type(const std::string)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 365,
+                "line": 367,
                 "column": 34,
                 "hidden": false
             },
@@ -7029,7 +7291,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_FCB",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 379,
+                "line": 381,
                 "column": 33,
                 "hidden": false
             },
@@ -7039,7 +7301,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_FC(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 384,
+                "line": 386,
                 "column": 33,
                 "hidden": false
             },
@@ -7049,7 +7311,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_B(const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 400,
+                "line": 402,
                 "column": 39,
                 "hidden": false
             },
@@ -7059,7 +7321,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_F(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 417,
+                "line": 419,
                 "column": 39,
                 "hidden": false
             },
@@ -7069,7 +7331,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_FCB_nrow",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 434,
+                "line": 436,
                 "column": 26,
                 "hidden": false
             },
@@ -7079,7 +7341,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_FCB_row_no(const int, const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 446,
+                "line": 448,
                 "column": 26,
                 "hidden": false
             },
@@ -7089,7 +7351,7 @@
                 "parent_name": "fwdControl",
                 "name": "get_FCB_nos(const unsigned int, const unsigned int, const bool, const bool)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 473,
+                "line": 475,
                 "column": 39,
                 "hidden": false
             },
@@ -7099,7 +7361,7 @@
                 "parent_name": "fwdControl",
                 "name": "shared_catch(const unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdControl.cpp",
-                "line": 504,
+                "line": 506,
                 "column": 18,
                 "hidden": false
             }
@@ -7108,13 +7370,34 @@
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdSR.cpp",
-        "file_last_write": 1747379583.0,
-        "definitions": [],
+        "file_last_write": 1791980429.0,
+        "definitions": [
+            {
+                "usr": "c:@S@fwdSR_base>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdSR_base<double>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdSR.cpp",
+                "line": 390,
+                "column": 16,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@fwdSR_base>#$@N@CppAD@S@AD>#d",
+                "kind": 2,
+                "parent_name": "",
+                "name": "fwdSR_base<adouble>",
+                "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/fwdSR.cpp",
+                "line": 391,
+                "column": 16,
+                "hidden": false
+            }
+        ],
         "hidden": false
     },
     {
         "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-        "file_last_write": 1747060741.0,
+        "file_last_write": 1791979413.0,
         "definitions": [
             {
                 "usr": "c:@S@operatingModel@F@operator=#&1$@S@operatingModel#",
@@ -7137,72 +7420,72 @@
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@spawn_before_fishing#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@spawn_before_fishing#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "spawn_before_fishing(const int, const int, const int)",
+                "name": "spawn_before_fishing(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
                 "line": 157,
                 "column": 22,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@fishing_before_spawn#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@fishing_before_spawn#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "fishing_before_spawn(const int, const int, const int)",
+                "name": "fishing_before_spawn(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
                 "line": 194,
                 "column": 22,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_exp_z_pre_spwn#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_exp_z_pre_spwn#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_exp_z_pre_spwn(const int, const int, const int)",
+                "name": "get_exp_z_pre_spwn(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
                 "line": 232,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@total_srp#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@total_srp#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "total_srp(const int, const int, const int)",
+                "name": "total_srp(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
                 "line": 292,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@srp#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@srp#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "srp(const int, const int, const int)",
+                "name": "srp(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 321,
+                "line": 326,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@ssf#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@ssf#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "ssf(const int, const int, const int)",
+                "name": "ssf(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 378,
+                "line": 383,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@f_prop_spwn#1I#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@f_prop_spwn#1I#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "f_prop_spwn(const int, const int, const int, const int)",
+                "name": "f_prop_spwn(const int, const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 407,
+                "line": 412,
                 "column": 25,
                 "hidden": false
             },
@@ -7212,17 +7495,17 @@
                 "parent_name": "operatingModel",
                 "name": "calc_rec(const unsigned int, const unsigned int, const unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 459,
+                "line": 464,
                 "column": 38,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_f#1I#1I#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_f#1I#1I#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_f(const int, const int, const int, const int, const int)",
+                "name": "get_f(const int, const int, const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 527,
+                "line": 532,
                 "column": 27,
                 "hidden": false
             },
@@ -7232,17 +7515,17 @@
                 "parent_name": "operatingModel",
                 "name": "get_f(const int, const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 578,
+                "line": 583,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_f#1i#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_f#1i#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_f(const unsigned int, const int, const int)",
+                "name": "get_f(const unsigned int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 592,
+                "line": 597,
                 "column": 27,
                 "hidden": false
             },
@@ -7252,47 +7535,47 @@
                 "parent_name": "operatingModel",
                 "name": "get_f(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 616,
+                "line": 621,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_nunit_z#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_nunit_z#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_nunit_z(const int, const int, const int)",
+                "name": "get_nunit_z(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 642,
+                "line": 647,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_nunit_f#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_nunit_f#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_nunit_f(const int, const int, const int)",
+                "name": "get_nunit_f(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 680,
+                "line": 685,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_nunit_f#1I#1I#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@get_nunit_f#1I#1I#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_nunit_f(const int, const int, const int, const int, const int)",
+                "name": "get_nunit_f(const int, const int, const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 714,
+                "line": 719,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@survivors#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@survivors#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "survivors(const int, const int, const int)",
+                "name": "survivors(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 739,
+                "line": 744,
                 "column": 27,
                 "hidden": false
             },
@@ -7302,7 +7585,7 @@
                 "parent_name": "operatingModel",
                 "name": "project_biols(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 761,
+                "line": 766,
                 "column": 22,
                 "hidden": false
             },
@@ -7312,27 +7595,27 @@
                 "parent_name": "operatingModel",
                 "name": "project_fisheries(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 892,
+                "line": 897,
                 "column": 22,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@run#1d#I#1d#1d#1i#",
+                "usr": "c:@S@operatingModel@F@run#1d#$@N@std@S@vector>#d#$@N@std@S@allocator>#d#1d#1d#1i#",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "run(const double, int, const double, const double, const unsigned int)",
+                "name": "run(const double, std::vector<double>, const double, const double, const unsigned int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1003,
+                "line": 1008,
                 "column": 37,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@eval_om#1$@E@fwdControlTargetType#1I#1I#1I#1I#1I#",
+                "usr": "c:@S@operatingModel@F@eval_om#1$@E@fwdControlTargetType#1I#1I#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S1_#",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "eval_om(const fwdControlTargetType, const int, const int, const int, const int, const int)",
+                "name": "eval_om(const fwdControlTargetType, const int, const int, const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1212,
+                "line": 1217,
                 "column": 27,
                 "hidden": false
             },
@@ -7342,7 +7625,7 @@
                 "parent_name": "operatingModel",
                 "name": "get_target_value_hat(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1495,
+                "line": 1500,
                 "column": 38,
                 "hidden": false
             },
@@ -7352,17 +7635,17 @@
                 "parent_name": "operatingModel",
                 "name": "get_target_value_hat(const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1514,
+                "line": 1519,
                 "column": 38,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@get_target_hat_indices#&I#S0_#1I#1I#1L#1b#",
+                "usr": "c:@S@operatingModel@F@get_target_hat_indices#&$@N@std@S@vector>#i#$@N@std@S@allocator>#i#S0_#1I#1I#1L#1b#",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "get_target_hat_indices(int &, int &, const int, const int, const long, const bool)",
+                "name": "get_target_hat_indices(std::vector<unsigned int> &, std::vector<unsigned int> &, const int, const int, const long, const bool)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1647,
+                "line": 1652,
                 "column": 22,
                 "hidden": false
             },
@@ -7372,7 +7655,7 @@
                 "parent_name": "operatingModel",
                 "name": "get_target_value(const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1762,
+                "line": 1767,
                 "column": 37,
                 "hidden": false
             },
@@ -7382,197 +7665,197 @@
                 "parent_name": "operatingModel",
                 "name": "get_target_value(const int, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1780,
+                "line": 1785,
                 "column": 37,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@fbar#1I#1I#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@fbar#1I#1I#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "fbar(const int, const int, const int, const int, const int)",
+                "name": "fbar(const int, const int, const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1851,
+                "line": 1856,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@fbar#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@fbar#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "fbar(const int, const int, const int)",
+                "name": "fbar(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1874,
+                "line": 1879,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@landings#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@landings#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "landings(const int, const int, const int)",
+                "name": "landings(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1910,
+                "line": 1915,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@discards#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@discards#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "discards(const int, const int, const int)",
+                "name": "discards(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1948,
+                "line": 1953,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@catches#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@catches#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "catches(const int, const int, const int)",
+                "name": "catches(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 1987,
+                "line": 1992,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@landings_n#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@landings_n#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "landings_n(const int, const int, const int)",
+                "name": "landings_n(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2005,
+                "line": 2010,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@discards_n#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@discards_n#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "discards_n(const int, const int, const int)",
+                "name": "discards_n(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2037,
+                "line": 2042,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@catch_n#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@catch_n#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "catch_n(const int, const int, const int)",
+                "name": "catch_n(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2069,
+                "line": 2074,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@ssb_start#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@ssb_start#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "ssb_start(const int, const int, const int)",
+                "name": "ssb_start(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2089,
+                "line": 2094,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@biomass_start#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@biomass_start#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "biomass_start(const int, const int, const int)",
+                "name": "biomass_start(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2117,
+                "line": 2122,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@ssb_end#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@ssb_end#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "ssb_end(const int, const int, const int)",
+                "name": "ssb_end(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2145,
+                "line": 2150,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@inmb_end#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@inmb_end#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "inmb_end(const int, const int, const int)",
+                "name": "inmb_end(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2174,
+                "line": 2179,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@indb#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@indb#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "indb(const int, const int, const int)",
+                "name": "indb(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2204,
+                "line": 2209,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@biomass_end#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@biomass_end#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "biomass_end(const int, const int, const int)",
+                "name": "biomass_end(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2236,
+                "line": 2241,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@ssb_spawn#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@ssb_spawn#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "ssb_spawn(const int, const int, const int)",
+                "name": "ssb_spawn(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2267,
+                "line": 2272,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@biomass_spawn#1I#1I#1I#1",
+                "usr": "c:@S@operatingModel@F@biomass_spawn#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#1",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "biomass_spawn(const int, const int, const int)",
+                "name": "biomass_spawn(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2304,
+                "line": 2309,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@ssb_flash#1I#1I#1I#",
+                "usr": "c:@S@operatingModel@F@ssb_flash#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "ssb_flash(const int, const int, const int)",
+                "name": "ssb_flash(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2342,
+                "line": 2347,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@S@operatingModel@F@biomass_flash#1I#1I#1I#",
+                "usr": "c:@S@operatingModel@F@biomass_flash#1I#1$@N@std@S@vector>#i#$@N@std@S@allocator>#i#1S0_#",
                 "kind": 7,
                 "parent_name": "operatingModel",
-                "name": "biomass_flash(const int, const int, const int)",
+                "name": "biomass_flash(const int, const std::vector<unsigned int>, const std::vector<unsigned int>)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2406,
+                "line": 2411,
                 "column": 27,
                 "hidden": false
             },
             {
-                "usr": "c:@F@operatingModelRun#$@S@FLFisheries_base>#$@N@CppAD@S@AD>#d#$@S@fwdBiols_base>#S1_#1$@S@fwdControl#I#1d#1d#1d#1I#",
+                "usr": "c:@F@operatingModelRun#$@S@FLFisheries_base>#$@N@CppAD@S@AD>#d#$@S@fwdBiols_base>#S1_#1$@S@fwdControl#$@N@std@S@vector>#d#$@N@std@S@allocator>#d#1d#1d#1d#1I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "operatingModelRun(FLFisheriesAD, fwdBiolsAD, const fwdControl, int, const double, const double, const double, const int)",
+                "name": "operatingModelRun(FLFisheriesAD, fwdBiolsAD, const fwdControl, std::vector<double>, const double, const double, const double, const int)",
                 "file": "C:/Users/kuehn/Documents/github_packages/FLasherEMSRR/src/operating_model.cpp",
-                "line": 2505,
+                "line": 2510,
                 "column": 12,
                 "hidden": false
             }

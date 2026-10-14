@@ -6,7 +6,6 @@
 #
 # Distributed under the terms of the EUPL-1.2
 
-
 context("FLStock projections with target as FLQuant")
 
 # f=FLQuant is parsed properly
@@ -16,11 +15,11 @@ test_that("Target f=FLQuant()",{
 
   target <- fbar(ple4)[, ac(2000:2017)]
 
-  res <- fwd(ple4, f=target,  sr=predictModel(model="geomean", 
-    params=FLPar(a=yearMeans(rec(ple4)[, ac(2006:2008)]))))
+  sr <- test_custom_srr(ple4)
+  
+  res <- fwd(ple4, f=target,  sr=sr)
 
-  res <- fwd(ple4, f=target,  sr=predictModel(model="geomean", 
-    params=FLPar(a=yearMeans(rec(ple4)[, ac(2006:2008)]))),
+  res <- fwd(ple4, f=target,  sr=sr,
     deviances=target * 0)
 
   expect_equal(fbar(res)[, ac(2000:2017)],

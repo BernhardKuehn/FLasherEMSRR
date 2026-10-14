@@ -1,7 +1,7 @@
 {
     "dialog-state": {
-        "query": "namespace",
-        "path": "",
+        "query": "sr = predictModel(",
+        "path": "/tests/testthat",
         "regex": false,
         "caseSensitive": false,
         "wholeWord": false,
@@ -9,7 +9,7 @@
         "useGitGrep": true,
         "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 799,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

@@ -80,9 +80,19 @@ setMethod('fwdControl', signature(target='data.frame', iters='array'),
       ix <- ite[dup,,,drop=FALSE]
       iy <- ite[dup2,,,drop=FALSE]
 
-      ix[,c(1,3),][is.na(ix[, c(1,3),])] <- 
-        iy[,c(1,3),][!is.na(iy[, c(1,3),])]
-    
+      # ix[,c(1,3),][is.na(ix[, c(1,3),])] <- 
+      #   iy[,c(1,3),][!is.na(iy[, c(1,3),])]
+      
+      # Merge min/max only where ix is missing and iy has a value.
+      # Keep the same positions on both sides; unmatched NAs remain NA.
+        ix_bounds <- ix[, c(1, 3), , drop=FALSE]
+        iy_bounds <- iy[, c(1, 3), , drop=FALSE]
+        fill <- is.na(ix_bounds) & !is.na(iy_bounds)
+        ix_bounds[fill] <- iy_bounds[fill]
+        ix[, c(1, 3), ] <- ix_bounds
+      
+      
+      
       ite[dup2,,] <- ix
       ite <- ite[!dup,,,drop=FALSE] 
 
