@@ -4,3 +4,5 @@ src/*.a
 vignettes/*.pdf
 *.swp
 .Rproj.user
+*.ppt
+*.pptx
