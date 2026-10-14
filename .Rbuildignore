@@ -15,3 +15,5 @@ data-raw/
 docs/*
 man-roxygen/
 src/Doxyfile
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -489,7 +489,19 @@ std::vector<adouble> operatingModel::calc_rec(const unsigned int biol_no, const 
   unsigned int initial_params_season = 0;
   timestep_to_year_season(rec_timestep, biol_dim[3], initial_params_year, initial_params_season);
   std::vector<unsigned int> initial_params_indices{initial_params_year, unit, initial_params_season, area, 1};
-  FLQuantAD rec = biols(biol_no).predict_recruitment(srpq, initial_params_indices);
+  // get recruitment name model pointer
+  std::string srmodel = biols(biol_no).get_srr().get_model_name();
+  // print out
+  //std::cout << srmodel; // for debugging
+ // remove part of the formula 
+ std::string toRemove = "rec~";
+ std::string::size_type i = srmodel.find(toRemove);
+ if (i != std::string::npos)
+   srmodel.erase(i, toRemove.length());
+  
+  // predict recruitment
+  FLQuantAD rec = biols(biol_no).predict_recruitment(srpq, initial_params_indices, srmodel);
+  // Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,1))); // for debugging
   if(verbose) {
     for (unsigned int i=1; i<=niter; ++i){
       Rprintf("rec: %f\n", Value(rec(1,1,1,1,1,i)));

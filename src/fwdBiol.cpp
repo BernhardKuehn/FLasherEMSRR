@@ -300,8 +300,9 @@ unsigned int fwdBiol_base<T>::srp_timelag() const{
 
 // SRR accessors - avoids friends
 template <typename T>
-FLQuant_base<T> fwdBiol_base<T>::predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices){ 
-    return srr.predict_recruitment(srp, initial_params_indices);
+FLQuant_base<T> fwdBiol_base<T>::predict_recruitment(const FLQuant_base<T> srp, const std::vector<unsigned int> initial_params_indices,
+                                                     const std::string model_name){ 
+    return srr.predict_recruitment(srp, initial_params_indices, model_name);
 }
 
 template <typename T>
