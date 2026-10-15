@@ -3,6 +3,7 @@ src/*.so
 src/*.a
 vignettes/*.pdf
 *.swp
-.Rproj.user
+.Rproj.user/
+.Rhistory
 *.ppt
 *.pptx

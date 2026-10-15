@@ -21,3 +21,7 @@ operatingModelRun <- function(flfs, biols, ctrl, effort_max, effort_mult_initial
     .Call('_FLasherEMSRR_operatingModelRun', PACKAGE = 'FLasherEMSRR', flfs, biols, ctrl, effort_max, effort_mult_initial, indep_min, indep_max, nr_iters)
 }
 
+customSRR_AD_diagnostic <- function(ssb, model_name, params) {
+    .Call('_FLasherEMSRR_customSRR_AD_diagnostic', PACKAGE = 'FLasherEMSRR', ssb, model_name, params)
+}
+

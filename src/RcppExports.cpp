@@ -29,9 +29,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// customSRR_AD_diagnostic
+Rcpp::NumericVector customSRR_AD_diagnostic(double ssb, std::string model_name, Rcpp::NumericVector params);
+RcppExport SEXP _FLasherEMSRR_customSRR_AD_diagnostic(SEXP ssbSEXP, SEXP model_nameSEXP, SEXP paramsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type ssb(ssbSEXP);
+    Rcpp::traits::input_parameter< std::string >::type model_name(model_nameSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type params(paramsSEXP);
+    rcpp_result_gen = Rcpp::wrap(customSRR_AD_diagnostic(ssb, model_name, params));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_FLasherEMSRR_operatingModelRun", (DL_FUNC) &_FLasherEMSRR_operatingModelRun, 8},
+    {"_FLasherEMSRR_customSRR_AD_diagnostic", (DL_FUNC) &_FLasherEMSRR_customSRR_AD_diagnostic, 3},
     {NULL, NULL, 0}
 };
 
