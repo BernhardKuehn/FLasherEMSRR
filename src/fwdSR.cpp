@@ -408,7 +408,7 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     // Use the global environment so that any function (such as predefined_function) is found.
     // Environment env = Environment::global_env(); # rather unsafe/ avoid!
     // create a local sub-environment
-    Environment env = Environment::new_env(Environment::global_env());
+    Environment env = Environment::global_env().new_child(true);
 
     // Insert the C++ arguments into the R environment.
     env.assign("ssb", srp);
