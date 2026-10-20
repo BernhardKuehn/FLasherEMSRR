@@ -11,9 +11,9 @@ An FLBiols object with two FLBiol objects.
 An FLFisheries object with two FLFishery objects.
 }
 \usage{
-biols
+data(biols)
 
-flfs
+data(flfs)
 }
 \description{
 An FLBiols object with two FLBiol objects, one for plaice and one for sole.

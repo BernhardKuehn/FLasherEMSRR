@@ -3,6 +3,9 @@
 \name{coerce}
 \alias{coerce}
 \title{Methods for coercing objects between classes}
+\usage{
+\S4method{coerce}{FLQuants,fwdControl}(from, to = "fwdControl", strict = TRUE)
+}
 \arguments{
 \item{from}{Object to be coerced into one of another class.}
 
