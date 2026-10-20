@@ -406,8 +406,10 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
   //   Rprintf("the value of params[%i] : %f \n", i, params[i]);
   // }
     // Use the global environment so that any function (such as predefined_function) is found.
-    Environment env = Environment::global_env();
-    
+    // Environment env = Environment::global_env(); # rather unsafe/ avoid!
+    // create a local sub-environment
+    Environment env = Environment::new_env(Environment::global_env());
+
     // Insert the C++ arguments into the R environment.
     env.assign("ssb", srp);
     env.assign("params", params);
@@ -422,7 +424,7 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     // Parse the provided formula call string into an R expression.
     SEXP exprList = parseFunc(_["text"] = model_name);
     
-    // Evaluate the first expression from the parsed results in the global environment.
+    // Evaluate the first expression from the parsed results in the private eval environment.
     SEXP result = Rcpp_eval(VECTOR_ELT(exprList, 0), env);
     // coerse to a double first
     double d = Rcpp::as<double>(result);
