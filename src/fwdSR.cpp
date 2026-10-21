@@ -408,11 +408,16 @@ T customSRR(const T srp, const std::vector<double> params,const std::string mode
     // Use the global environment so that any function (such as predefined_function) is found.
     // Environment env = Environment::global_env(); # rather unsafe/ avoid!
     // create a local sub-environment
-    Environment env = Environment::global_env().new_child(true);
+    Rcpp::Environment env = Rcpp::Environment::global_env().new_child(true);
+
+    Rcpp::NumericVector r_params(params.begin(), params.end());
 
     // Insert the C++ arguments into the R environment.
-    env.assign("ssb", srp);
-    env.assign("params", params);
+    env["ssb"] = srp;
+    env["params"] = r_params;
+
+    //env.assign("ssb", srp);
+    //env.assign("params", params);
     
     // uncomment for debugging: 
     //double ssb_print = env["ssb"];
