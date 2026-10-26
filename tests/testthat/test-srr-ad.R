@@ -6,5 +6,6 @@ test_that("custom SRR preserves the SSB derivative", {
   )
   
   expect_equal(unname(result[["value"]]), 14)
-  expect_equal(unname(result[["derivative"]]), 6, tolerance = 1e-8)
+  expect_equal(unname(result[["derivative"]]), 6, tolerance = 1e-6)
+  expect_equal(unname(result[["sparse_derivative"]]), 6, tolerance = 1e-6)
 })

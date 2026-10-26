@@ -7,6 +7,7 @@
 //#include <chrono>
 
 #include "../inst/include/operating_model.h"
+#include "../inst/include/custom_srr_atomic.h"
 
 /*------------------------------------------------------------*/
 // operatingModel class
@@ -2508,6 +2509,8 @@ FLQuantAD operatingModel::biomass_flash(const int biol_no,  const std::vector<un
 //'@rdname operatingModelRun
 // [[Rcpp::export]]
 Rcpp::List operatingModelRun(FLFisheriesAD flfs, fwdBiolsAD biols, const fwdControl ctrl, std::vector<double> effort_max, const double effort_mult_initial, const double indep_min, const double indep_max, const int nr_iters = 50){
+  // Inside operatingModelRun(), before constructing operatingModel:
+  emsrr::AtomicScope atomic_scope;
   //auto tstartrun = std::chrono::high_resolution_clock::now();
   operatingModel om(flfs, biols, ctrl);
   Rcpp::IntegerMatrix solver_codes = om.run(effort_mult_initial, effort_max, indep_min, indep_max, nr_iters);

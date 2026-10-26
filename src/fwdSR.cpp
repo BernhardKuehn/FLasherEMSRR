@@ -8,6 +8,7 @@
 
 #include "../inst/include/fwdSR.h"
 #include "../inst/include/adouble_converter.h" // used for converting SEXP types to adouble
+#include "../inst/include/custom_srr_atomic.h" // allow a gradient tracking of an arbitrary (differenciable) function
 #include <Rcpp.h>
 #include <algorithm>
 #include <cctype>
@@ -447,41 +448,26 @@ template class fwdSR_base<adouble>;
 // // The disaggregated parameter values are stored in the fwdSR_base class as an FLQuant_base object
 // // The fwdSR.eval_model method sorts out time step of params etc and passes the correct set of params to these functions
 // // These functions must have the same argument list so that it matches the typedef for the model pointer
-template <typename T>
-T customSRR(const T srp, const std::vector<double> params,
-            const std::string model_name_arg) {
-  if (model_name_arg.empty())
-    Rcpp::stop("customSRR received an empty model expression");
-  
-  // The child environment prevents assignment to .GlobalEnv, but
-  // inherits user-defined functions such as gampredict().
-  Rcpp::Environment env =
-    Rcpp::Environment::global_env().new_child(true);
-  Rcpp::NumericVector r_params(params.begin(), params.end());
-  env["ssb"] = srp;
-  env["params"] = r_params;
-  
-  try {
-    Rcpp::Function parseFunc =
-      Rcpp::Environment::base_env()["parse"];
-    SEXP expressions = parseFunc(
-      Rcpp::_["text"] = model_name_arg);
-    
-    if (Rf_length(expressions) != 1)
-      Rcpp::stop("customSRR requires exactly one R expression");
-    
-    SEXP result = Rcpp_eval(VECTOR_ELT(expressions, 0), env);
-    const double value = Rcpp::as<double>(result);
-    if (!std::isfinite(value))
-      Rcpp::stop("customSRR returned a non-finite recruitment");
-    
-    // An R numeric result does NOT retain CppAD derivatives.
-    return T(value);
-  } catch (const std::exception& e) {
-    Rcpp::stop("customSRR failed for '%s': %s",
-               model_name_arg.c_str(), e.what());
-  }
-  return T(0); // Unreachable; makes return paths explicit.
+
+
+// Different customSRR templates depending on the return value type (double or adouble)
+// Definition of the customSRR (now evaluate_r_srr) is in inst/include/custom_srr_atomic.h
+template <>
+double customSRR<double>(
+    const double srp,
+    const std::vector<double> params,
+    const std::string model_name
+) {
+  return emsrr::evaluate_r_srr(srp, params, model_name);
+}
+
+template <>
+adouble customSRR<adouble>(
+    const adouble srp,
+    const std::vector<double> params,
+    const std::string model_name
+) {
+  return emsrr::evaluate_ad_srr(srp, params, model_name);
 }
 
 template <typename T>
@@ -619,7 +605,3 @@ T mixedsrr(const T srp, const std::vector<double> params,
 
 // Native models are used through pointers declared in this translation
 // unit. Keep explicit instantiations for the externally declared callback.
-template double customSRR<double>(
-    const double, const std::vector<double>, const std::string);
-template adouble customSRR<adouble>(
-    const adouble, const std::vector<double>, const std::string);

@@ -69,6 +69,21 @@ typedef fwdSR_base<adouble> fwdSRAD;
 // 
 template <typename T>
 T customSRR(const T srp, const std::vector<double> params,const std::string model_name);
+
+template <>
+double customSRR<double>(
+    const double srp,
+    const std::vector<double> params,
+    const std::string model_name
+);
+
+template <>
+adouble customSRR<adouble>(
+    const adouble srp,
+    const std::vector<double> params,
+    const std::string model_name
+);
+
 // 
 // template <typename T>
 // T customSRR(const T srp, const std::vector<double> params, char *f_name[]);
